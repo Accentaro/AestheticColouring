@@ -12,7 +12,7 @@ jobs:
       matrix:
         variant: [Debug, Release]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
@@ -34,14 +34,14 @@ jobs:
         if: matrix.variant == 'Release'
         run: ./gradlew --no-daemon --stacktrace bundleRelease
       - name: Upload ${{ matrix.variant }} artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-${{ matrix.variant == 'Debug' && 'debug-apk' || 'release-apk' }}
           path: ${{ matrix.variant == 'Debug' && 'app/build/outputs/apk/debug/app-debug.apk' || 'app/build/outputs/apk/release/app-release-unsigned.apk' }}
           if-no-files-found: warn
       - name: Upload release bundle
         if: matrix.variant == 'Release'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-release-aab-unsigned
           path: app/build/outputs/bundle/release/app-release.aab
