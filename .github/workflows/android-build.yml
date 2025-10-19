@@ -1,0 +1,53 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        variant: [Debug, Release]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Cache Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-home-cache-cleanup: true
+      - name: Prime Gradle dependencies
+        if: matrix.variant == 'Debug'
+        run: ./gradlew --no-daemon --stacktrace help
+      - name: Run unit tests
+        if: matrix.variant == 'Debug'
+        run: ./gradlew --no-daemon --stacktrace test
+      - name: Assemble ${{ matrix.variant }} APK
+        run: ./gradlew --no-daemon --stacktrace assemble${{ matrix.variant }}
+      - name: Build release bundle
+        if: matrix.variant == 'Release'
+        run: ./gradlew --no-daemon --stacktrace bundleRelease
+      - name: Upload ${{ matrix.variant }} artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-${{ matrix.variant == 'Debug' && 'debug-apk' || 'release-apk' }}
+          path: ${{ matrix.variant == 'Debug' && 'app/build/outputs/apk/debug/app-debug.apk' || 'app/build/outputs/apk/release/app-release-unsigned.apk' }}
+          if-no-files-found: warn
+      - name: Upload release bundle
+        if: matrix.variant == 'Release'
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-aab-unsigned
+          path: app/build/outputs/bundle/release/app-release.aab
+          if-no-files-found: warn
+      - name: Signing instructions (informational)
+        if: matrix.variant == 'Release'
+        run: |
+          echo "Configure RELEASE_STORE_* secrets in GitHub Actions and expose them via environment variables or Gradle properties before uploading signed artifacts."
+          echo "See README.md and SETUP_AND_RELEASE_GUIDE.md for keystore generation guidance and how to decode secrets at build time."

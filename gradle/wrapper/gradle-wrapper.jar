@@ -1,0 +1,1 @@
+This is a placeholder for the Gradle Wrapper JAR. Run `./gradlew wrapper --gradle-version 8.4` locally to regenerate the real binary before building release artifacts.

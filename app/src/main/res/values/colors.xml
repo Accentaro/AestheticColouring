@@ -1,0 +1,8 @@
+<resources>
+    <color name="trippify_black">#050505</color>
+    <color name="trippify_neon_pink">#FF00FF</color>
+    <color name="trippify_neon_cyan">#00FFFF</color>
+    <color name="trippify_neon_purple">#AA00FF</color>
+    <color name="trippify_neon_green">#39FF14</color>
+    <color name="trippify_neon_yellow">#F5FF00</color>
+</resources>

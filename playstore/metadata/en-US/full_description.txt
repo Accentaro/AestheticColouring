@@ -1,0 +1,11 @@
+## Overview
+Trippify is an immersive neon playground built for mindful sensory exploration. The production release must replace this placeholder copy with marketing-approved text that highlights:
+
+- Audio-reactive ripple scenes and interactive trails
+- Calming soundscapes with smooth crossfades
+- Premium palette creation, advanced effects, and ad-free sessions
+
+## Requirements
+- Keep within Google Play Store character limits (80 for short description, 4000 for full description).
+- Avoid unsupported formatting (Markdown headings should be stripped before publishing).
+- Mention microphone permission usage for audio-reactive features and clarify that it is optional.
