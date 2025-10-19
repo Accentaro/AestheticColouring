@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:scaleX="0.6" android:scaleY="0.6" android:translateX="22" android:translateY="22">
+        <path
+            android:fillColor="@color/trippify_neon_cyan"
+            android:pathData="M54,12a42,42 0,1 1,-0.01 0" />
+        <path
+            android:fillColor="@color/trippify_neon_pink"
+            android:pathData="M54,24a30,30 0,1 1,-0.01 0" />
+        <path
+            android:fillColor="@color/trippify_black"
+            android:pathData="M54,36a18,18 0,1 1,-0.01 0" />
+    </group>
+</vector>

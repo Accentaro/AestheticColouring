@@ -1,0 +1,22 @@
+/**
+ * Optional Gradle init script that enables repository mirrors when corporate firewalls block
+ * google() or mavenCentral(). To use it temporarily, pass:
+ *   ./gradlew -I gradle/mirror-init.gradle <task>
+ * or export GRADLE_OPTS="-I gradle/mirror-init.gradle".
+ *
+ * By default all mirrors are commented out. Uncomment the ones your environment provides,
+ * then switch them back off once the official repositories are reachable.
+ */
+settingsEvaluated { settings ->
+    settings.pluginManagement.repositories {
+        // maven { url = uri("https://mirror.example.com/google") }
+        // maven { url = uri("https://mirror.example.com/maven-central") }
+    }
+}
+
+allprojects {
+    repositories {
+        // maven { url = uri("https://mirror.example.com/google") }
+        // maven { url = uri("https://mirror.example.com/maven-central") }
+    }
+}
